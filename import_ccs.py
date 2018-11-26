@@ -12,50 +12,24 @@ print "Workspace dir:", path
 
 print "Cloning repos"
 
-cmd = "git clone https://github.com/nchronas/ADB_software.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software = ["git clone https://github.com/nchronas/ADB_software.git",
+  	"git clone https://github.com/nchronas/EPS_software.git",
+	"git clone https://github.com/nchronas/OBC_software.git",
+	"git clone https://github.com/nchronas/ADCS_software.git",
+	"git clone https://github.com/nchronas/RED_software.git",
+	"git clone https://github.com/nchronas/COMMS_software.git",
+	"git clone https://github.com/nchronas/PQ9_bus_software.git",
+	"git clone https://github.com/nchronas/INA226.git",
+	"git clone https://github.com/nchronas/TMP100.git",
+	"git clone https://github.com/nchronas/MB85RS256A.git",
+	"git clone https://github.com/nchronas/LTC2942.git"]
 
-cmd = "git clone https://github.com/nchronas/EPS_software.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+def clone(cmd):
+	pipe = subprocess.Popen(cmd, shell=True)	
+  pipe.wait()
 
-cmd = "git clone https://github.com/nchronas/OBC_software.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-cmd = "git clone https://github.com/nchronas/ADCS_software.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-cmd = "git clone https://github.com/nchronas/RED_software.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-cmd = "git clone https://github.com/nchronas/COMMS_software.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-cmd = "git clone https://github.com/nchronas/PQ9_bus_software.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-cmd = "git clone https://github.com/nchronas/INA226.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-cmd = "git clone https://github.com/nchronas/TMP100.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-cmd = "git clone https://github.com/nchronas/MB85RS256A.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-cmd = "git clone https://github.com/nchronas/LTC2942.git"
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software:
+	clone(x)
 
 print "Making RED project"
 
@@ -83,106 +57,43 @@ pipe.wait()
 
 folder = "RED_software/ttc/"
 
-f = pq9_path + "delfiPQ/HAL/hal_functions.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_RED = ["delfiPQ/HAL/hal_functions.c",
+	"delfiPQ/RED/HAL/hal_subsystem.c",
+	"delfiPQ/RED/devices.c",
+	"delfiPQ/RED/fm.c",
+	"delfiPQ/RED/housekeeping.c",
+	"delfiPQ/RED/parameters.c",
+	"delfiPQ/RED/subsystem_pool.c",
+	"delfiPQ/RED/subsystem.c",
 
-f = pq9_path + "delfiPQ/RED/HAL/hal_subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_PQ = ["delfiPQ/OSAL/osal.c",
+	"delfiPQ/packet_engine.c",
+	"delfiPQ/satellite.c",
+	"delfiPQ/PQ9_bus_engine.c"]
 
-f = pq9_path + "delfiPQ/RED/devices.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_core = ["core/function_management_service.c",
+	"core/housekeeping_service.c",
+	"core/packet_stats.c",
+	"core/packet_utilities.c",
+	"core/ping_service.c",
+	"core/pkt_pool.c",
+	"core/verification_service.c",
+	"core/queue.c"]
 
-f = pq9_path + "delfiPQ/RED/fm.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+def subpRED(fRED):
+	f = pq9_path + fRED
+	cmd = "ln -s " + f + " " + folder
+	pipe = subprocess.Popen(cmd, shell=True)	
+  pipe.wait()
 
-f = pq9_path + "delfiPQ/RED/housekeeping.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_RED:
+  subpRED(x)
 
-f = pq9_path + "delfiPQ/RED/parameters.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_PQ:
+	subpRED(x)
 
-f = pq9_path + "delfiPQ/RED/subsystem_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/RED/subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/OSAL/osal.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/packet_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/satellite.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/PQ9_bus_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-f = pq9_path + "core/function_management_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/housekeeping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_stats.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_utilities.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/ping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/pkt_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/verification_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/queue.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_core:
+	subpRED(x)	
 
 print "Input to ccs directories"
 print pq9_path + "delfiPQ/RED"
@@ -192,8 +103,6 @@ print pq9_path + "delfiPQ/OSAL"
 print pq9_path + "delfiPQ"
 print pq9_path + "core"
 print pq9_path + "services"
-
-
 
 print "Making ADB project"
 
@@ -222,106 +131,30 @@ pipe.wait()
 
 folder = "ADB_software/ttc/"
 
-f = pq9_path + "delfiPQ/HAL/hal_functions.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_ADB = ["delfiPQ/HAL/hal_functions.c",
+	"delfiPQ/ADB/HAL/hal_subsystem.c",
+	"delfiPQ/ADB/devices.c",
+	"delfiPQ/ADB/housekeeping.c",
+	"delfiPQ/ADB/parameters.c",
+	"delfiPQ/ADB/subsystem_pool.c",
+	"delfiPQ/ADB/subsystem.c"]
+	
+software_core.append("core/testing.c")
 
-f = pq9_path + "delfiPQ/ADB/HAL/hal_subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+def subpADB(fADB):
+	f = pq9_path + fADB	
+  cmd = "ln -s " + f + " " + folder
+	pipe = subprocess.Popen(cmd, shell=True)	
+  pipe.wait()
 
-f = pq9_path + "delfiPQ/ADB/devices.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_ADB:
+	subpADB(x)
 
-f = pq9_path + "delfiPQ/ADB/housekeeping.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_PQ:
+	subpADB(x)
 
-f = pq9_path + "delfiPQ/ADB/parameters.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/ADB/subsystem_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/ADB/subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/OSAL/osal.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/packet_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/satellite.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/PQ9_bus_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-f = pq9_path + "core/function_management_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/housekeeping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_stats.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_utilities.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/ping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/pkt_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/verification_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/queue.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/testing.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_core:
+	subpADB(x)
 
 folder = "ADB_software/libs/"
 
@@ -344,8 +177,6 @@ print pq9_path + "delfiPQ"
 print pq9_path + "core"
 print path + "INA226"
 print path + "TMP100"
-
-
 
 print "Making EPS project"
 
@@ -372,120 +203,32 @@ cmd = "ln -s " + f + " " + folder
 pipe = subprocess.Popen(cmd, shell=True)
 pipe.wait()
 
-
 folder = "EPS_software/ttc/"
 
-f = pq9_path + "delfiPQ/HAL/hal_functions.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_EPS = ["delfiPQ/HAL/hal_functions.c",
+	"delfiPQ/EPS/HAL/hal_subsystem.c",
+	"delfiPQ/EPS/devices.c",
+	"delfiPQ/EPS/fm.c",
+	"delfiPQ/EPS/housekeeping.c",
+	"delfiPQ/EPS/parameters.c",
+	"delfiPQ/EPS/safety_check.c",
+	"delfiPQ/EPS/subsystem_pool.c",
+	"delfiPQ/EPS/subsystem.c"]
 
-f = pq9_path + "delfiPQ/EPS/HAL/hal_subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+def subpEPS(fEPS):
+	f = pq9_path + fEPS
+	cmd = "ln -s " + f + " " + folder	
+  pipe = subprocess.Popen(cmd, shell=True)	
+  pipe.wait()
+		
+for x in software_EPS:
+	subpEPS(x)
 
-f = pq9_path + "delfiPQ/EPS/devices.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_PQ:
+	subpEPS(x)
 
-f = pq9_path + "delfiPQ/EPS/fm.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/EPS/housekeeping.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/EPS/parameters.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/EPS/safety_check.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/EPS/subsystem_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/EPS/subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/OSAL/osal.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/packet_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/PQ9_bus_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/satellite.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-f = pq9_path + "core/function_management_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/housekeeping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_stats.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_utilities.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/ping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/pkt_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/verification_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/queue.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/testing.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
+for x in software_core:
+	subpEPS(x)
 
 folder = "EPS_software/libs/"
 f = path + "TMP100/TMP100.c"
@@ -520,8 +263,6 @@ print path + "TMP100"
 print path + "MB85RS256A"
 print path + "LTC2942"
 
-
-
 print "Making OBC project"
 
 working_dir = path + "OBC_software"
@@ -549,123 +290,32 @@ pipe.wait()
 
 folder = "OBC_software/ttc/"
 
-f = pq9_path + "delfiPQ/HAL/hal_functions.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_OBC = ["delfiPQ/HAL/hal_functions.c",
+	"delfiPQ/OBC/HAL/hal_subsystem.c",
+	"delfiPQ/OBC/devices.c",
+	"delfiPQ/OBC/fm.c",
+	"delfiPQ/OBC/housekeeping.c",
+	"delfiPQ/OBC/parameters.c",
+	"delfiPQ/OBC/rf_packet.c",
+	"delfiPQ/OBC/subsystem_pool.c",
+	"delfiPQ/OBC/subsystem.c"]
 
-f = pq9_path + "delfiPQ/OBC/HAL/hal_subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_core.insert(0, "core/en_data_service.c")
 
-f = pq9_path + "delfiPQ/OBC/devices.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+def subpOBC(fOBC):
+	f = pq9_path + fOBC
+	cmd = "ln -s " + f + " " + folder
+	pipe = subprocess.Popen(cmd, shell=True)
+	pipe.wait()
 
-f = pq9_path + "delfiPQ/OBC/fm.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_OBC:
+	subpOBC(x)
 
-f = pq9_path + "delfiPQ/OBC/housekeeping.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_PQ:
+	subpOBC(x)
 
-f = pq9_path + "delfiPQ/OBC/parameters.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/OBC/rf_packet.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/OBC/subsystem_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/OBC/subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-f = pq9_path + "delfiPQ/OSAL/osal.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/packet_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/PQ9_bus_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/satellite.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-f = pq9_path + "core/en_data_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/function_management_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/housekeeping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_stats.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_utilities.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/ping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/pkt_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/verification_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/queue.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/testing.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
+for x in software_core:
+	subpOBC(x)
 
 folder = "OBC_software/libs/"
 f = path + "TMP100/TMP100.c"
@@ -694,8 +344,6 @@ print path + "INA226"
 print path + "TMP100"
 print path + "MB85RS256A"
 
-
-
 print "Making ADCS project"
 
 working_dir = path + "ADCS_software"
@@ -723,112 +371,31 @@ pipe.wait()
 
 folder = "ADCS_software/ttc/"
 
-f = pq9_path + "delfiPQ/HAL/hal_functions.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_ADCS = ["delfiPQ/HAL/hal_functions.c",
+	"delfiPQ/ADCS/HAL/hal_subsystem.c",
+	"delfiPQ/ADCS/devices.c",
+	"delfiPQ/ADCS/fm.c",
+	"delfiPQ/ADCS/housekeeping.c",
+	"delfiPQ/ADCS/parameters.c",
+	"delfiPQ/ADCS/subsystem_pool.c",
+	"delfiPQ/ADCS/subsystem.c"]
 
-f = pq9_path + "delfiPQ/ADCS/HAL/hal_subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-f = pq9_path + "delfiPQ/ADCS/devices.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_core.remove("core/en_data_service.c")
 
-f = pq9_path + "delfiPQ/ADCS/fm.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+def subpADCS(fADCS):
+	f = pq9_path + fADCS
+	cmd = "ln -s " + f + " " + folder
+	pipe = subprocess.Popen(cmd, shell=True)
+	pipe.wait()
 
-f = pq9_path + "delfiPQ/ADCS/housekeeping.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_ADCS:
+	subpADCS(x)
 
-f = pq9_path + "delfiPQ/ADCS/parameters.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_PQ:
+	subpADCS(x)
 
-f = pq9_path + "delfiPQ/ADCS/subsystem_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/ADCS/subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-f = pq9_path + "delfiPQ/OSAL/osal.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/packet_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/PQ9_bus_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/satellite.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-f = pq9_path + "core/function_management_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/housekeeping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_stats.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_utilities.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/ping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/pkt_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/verification_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/queue.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/testing.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
+for x in software_core:
+	subpADCS(x)
 
 folder = "ADCS_software/libs/"
 f = path + "TMP100/TMP100.c"
@@ -857,8 +424,6 @@ print path + "INA226"
 print path + "TMP100"
 print path + "MB85RS256A"
 
-
-
 print "Making COMMS project"
 
 working_dir = path + "COMMS_software"
@@ -886,123 +451,32 @@ pipe.wait()
 
 folder = "COMMS_software/ttc/"
 
-f = pq9_path + "delfiPQ/HAL/hal_functions.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_COMMS = ["delfiPQ/HAL/hal_functions.c",
+	"delfiPQ/COMMS/HAL/hal_subsystem.c",
+	"delfiPQ/COMMS/devices.c",
+	"delfiPQ/COMMS/fm.c",
+	"delfiPQ/COMMS/housekeeping.c",
+	"delfiPQ/COMMS/parameters.c",
+	"delfiPQ/COMMS/rf_packet.c",
+	"delfiPQ/COMMS/subsystem_pool.c",
+	"delfiPQ/COMMS/subsystem.c"]
 
-f = pq9_path + "delfiPQ/COMMS/HAL/hal_subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+software_core.insert(0, "core/en_data_service.c")
 
-f = pq9_path + "delfiPQ/COMMS/devices.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+def subpCOMMS(fCOMMS):
+	f = pq9_path + fCOMMS
+	cmd = "ln -s " + f + " " + folder
+	pipe = subprocess.Popen(cmd, shell=True)
+	pipe.wait()
 
-f = pq9_path + "delfiPQ/COMMS/fm.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_COMMS:
+	subpCOMMS(x)
 
-f = pq9_path + "delfiPQ/COMMS/housekeeping.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+for x in software_PQ:
+	subpCOMMS(x)
 
-f = pq9_path + "delfiPQ/COMMS/parameters.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/COMMS/rf_packet.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/COMMS/subsystem_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/COMMS/subsystem.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-f = pq9_path + "delfiPQ/OSAL/osal.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/packet_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/PQ9_bus_engine.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/satellite.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-
-f = pq9_path + "core/en_data_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/function_management_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/housekeeping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_utilities.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/packet_stats.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/ping_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/pkt_pool.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/verification_service.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/queue.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "core/testing.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
+for x in software_core:
+	subpCOMMS(x)
 
 folder = "COMMS_software/libs/"
 f = path + "TMP100/TMP100.c"
@@ -1018,8 +492,6 @@ print pq9_path + "delfiPQ/OSAL"
 print pq9_path + "delfiPQ"
 print pq9_path + "core"
 print path + "TMP100"
-
-
 
 
 print "Install pyserial, you need to have pip"
