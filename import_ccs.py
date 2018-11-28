@@ -25,8 +25,8 @@ software = ["git clone https://github.com/nchronas/ADB_software.git",
 	"git clone https://github.com/nchronas/LTC2942.git"]
 
 def clone(cmd):
-	pipe = subprocess.Popen(cmd, shell=True)	
-  pipe.wait()
+	pipe = subprocess.Popen(cmd, shell=True)
+	pipe.wait()
 
 for x in software:
 	clone(x)
@@ -83,11 +83,11 @@ software_core = ["core/function_management_service.c",
 def subpRED(fRED):
 	f = pq9_path + fRED
 	cmd = "ln -s " + f + " " + folder
-	pipe = subprocess.Popen(cmd, shell=True)	
-  pipe.wait()
+	pipe = subprocess.Popen(cmd, shell=True)
+	pipe.wait()
 
 for x in software_RED:
-  subpRED(x)
+	subpRED(x)
 
 for x in software_PQ:
 	subpRED(x)
