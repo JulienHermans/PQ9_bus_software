@@ -64,7 +64,7 @@ software_RED = ["delfiPQ/HAL/hal_functions.c",
 	"delfiPQ/RED/housekeeping.c",
 	"delfiPQ/RED/parameters.c",
 	"delfiPQ/RED/subsystem_pool.c",
-	"delfiPQ/RED/subsystem.c",
+	"delfiPQ/RED/subsystem.c"]
 
 software_PQ = ["delfiPQ/OSAL/osal.c",
 	"delfiPQ/packet_engine.c",
@@ -142,10 +142,10 @@ software_ADB = ["delfiPQ/HAL/hal_functions.c",
 software_core.append("core/testing.c")
 
 def subpADB(fADB):
-	f = pq9_path + fADB	
-  cmd = "ln -s " + f + " " + folder
-	pipe = subprocess.Popen(cmd, shell=True)	
-  pipe.wait()
+	f = pq9_path + fADB
+	cmd = "ln -s " + f + " " + folder
+	pipe = subprocess.Popen(cmd, shell=True)
+	pipe.wait()
 
 for x in software_ADB:
 	subpADB(x)
@@ -217,9 +217,9 @@ software_EPS = ["delfiPQ/HAL/hal_functions.c",
 
 def subpEPS(fEPS):
 	f = pq9_path + fEPS
-	cmd = "ln -s " + f + " " + folder	
-  pipe = subprocess.Popen(cmd, shell=True)	
-  pipe.wait()
+	cmd = "ln -s " + f + " " + folder
+	pipe = subprocess.Popen(cmd, shell=True)
+	pipe.wait()
 		
 for x in software_EPS:
 	subpEPS(x)
