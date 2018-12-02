@@ -3,6 +3,7 @@
 import sys
 import subprocess
 from subprocess import call
+import functions
 #import pip
 
 #path = sys.argv[1:]
@@ -24,12 +25,7 @@ software = ["git clone https://github.com/nchronas/ADB_software.git",
 	"git clone https://github.com/nchronas/MB85RS256A.git",
 	"git clone https://github.com/nchronas/LTC2942.git"]
 
-def clone(cmd):
-	pipe = subprocess.Popen(cmd, shell=True)
-	pipe.wait()
-
-for x in software:
-	clone(x)
+functions.function_clone()
 
 print "Making RED project"
 
@@ -80,20 +76,7 @@ software_core = ["core/function_management_service.c",
 	"core/verification_service.c",
 	"core/queue.c"]
 
-def subpRED(fRED):
-	f = pq9_path + fRED
-	cmd = "ln -s " + f + " " + folder
-	pipe = subprocess.Popen(cmd, shell=True)
-	pipe.wait()
-
-for x in software_RED:
-	subpRED(x)
-
-for x in software_PQ:
-	subpRED(x)
-
-for x in software_core:
-	subpRED(x)	
+functions.function_RED()	
 
 print "Input to ccs directories"
 print pq9_path + "delfiPQ/RED"
@@ -141,20 +124,7 @@ software_ADB = ["delfiPQ/HAL/hal_functions.c",
 	
 software_core.append("core/testing.c")
 
-def subpADB(fADB):
-	f = pq9_path + fADB
-	cmd = "ln -s " + f + " " + folder
-	pipe = subprocess.Popen(cmd, shell=True)
-	pipe.wait()
-
-for x in software_ADB:
-	subpADB(x)
-
-for x in software_PQ:
-	subpADB(x)
-
-for x in software_core:
-	subpADB(x)
+functions.function_ADB()
 
 folder = "ADB_software/libs/"
 
@@ -215,20 +185,7 @@ software_EPS = ["delfiPQ/HAL/hal_functions.c",
 	"delfiPQ/EPS/subsystem_pool.c",
 	"delfiPQ/EPS/subsystem.c"]
 
-def subpEPS(fEPS):
-	f = pq9_path + fEPS
-	cmd = "ln -s " + f + " " + folder
-	pipe = subprocess.Popen(cmd, shell=True)
-	pipe.wait()
-		
-for x in software_EPS:
-	subpEPS(x)
-
-for x in software_PQ:
-	subpEPS(x)
-
-for x in software_core:
-	subpEPS(x)
+functions.function_EPS()
 
 folder = "EPS_software/libs/"
 f = path + "TMP100/TMP100.c"
@@ -302,20 +259,7 @@ software_OBC = ["delfiPQ/HAL/hal_functions.c",
 
 software_core.insert(0, "core/en_data_service.c")
 
-def subpOBC(fOBC):
-	f = pq9_path + fOBC
-	cmd = "ln -s " + f + " " + folder
-	pipe = subprocess.Popen(cmd, shell=True)
-	pipe.wait()
-
-for x in software_OBC:
-	subpOBC(x)
-
-for x in software_PQ:
-	subpOBC(x)
-
-for x in software_core:
-	subpOBC(x)
+functions.function_OBC()
 
 folder = "OBC_software/libs/"
 f = path + "TMP100/TMP100.c"
@@ -382,20 +326,7 @@ software_ADCS = ["delfiPQ/HAL/hal_functions.c",
 
 software_core.remove("core/en_data_service.c")
 
-def subpADCS(fADCS):
-	f = pq9_path + fADCS
-	cmd = "ln -s " + f + " " + folder
-	pipe = subprocess.Popen(cmd, shell=True)
-	pipe.wait()
-
-for x in software_ADCS:
-	subpADCS(x)
-
-for x in software_PQ:
-	subpADCS(x)
-
-for x in software_core:
-	subpADCS(x)
+functions.function_ADCS()
 
 folder = "ADCS_software/libs/"
 f = path + "TMP100/TMP100.c"
@@ -463,20 +394,7 @@ software_COMMS = ["delfiPQ/HAL/hal_functions.c",
 
 software_core.insert(0, "core/en_data_service.c")
 
-def subpCOMMS(fCOMMS):
-	f = pq9_path + fCOMMS
-	cmd = "ln -s " + f + " " + folder
-	pipe = subprocess.Popen(cmd, shell=True)
-	pipe.wait()
-
-for x in software_COMMS:
-	subpCOMMS(x)
-
-for x in software_PQ:
-	subpCOMMS(x)
-
-for x in software_core:
-	subpCOMMS(x)
+functions.function_COMMS()
 
 folder = "COMMS_software/libs/"
 f = path + "TMP100/TMP100.c"
