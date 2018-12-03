@@ -107,3 +107,17 @@ def function_COMMS():
 
   for x in software_core:
     subpCOMMS(x)
+
+
+def function_pq9(fpath):
+	f = pq9_path + fpath
+	cmd = "ln -s " + f + " " + folder
+	pipe = subprocess.Popen(cmd, shell=True)
+	pipe.wait()
+
+
+def function_path(fpath):
+	f = path + fpath
+	cmd = "ln -s " + f + " " + folder
+	pipe = subprocess.Popen(cmd, shell=True)
+	pipe.wait()
