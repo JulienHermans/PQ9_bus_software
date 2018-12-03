@@ -41,15 +41,9 @@ print "Creating symlinks"
 
 folder = "RED_software/"
 
-f = pq9_path + "delfiPQ/RED/HAL/RED_Board.h"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_pq9("delfiPQ/RED/HAL/RED_Board.h")
+functions.function_pq9("delfiPQ/RED/HAL/RED_Board.c")
 
-f = pq9_path + "delfiPQ/RED/HAL/RED_Board.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
 folder = "RED_software/ttc/"
 
@@ -102,15 +96,8 @@ print "Creating symlinks"
 
 folder = "ADB_software/"
 
-f = pq9_path + "delfiPQ/ADB/HAL/ADB_Board.h"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = pq9_path + "delfiPQ/ADB/HAL/ADB_Board.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_pq9("delfiPQ/ADB/HAL/ADB_Board.h")
+functions.function_pq9("delfiPQ/ADB/HAL/ADB_Board.c")
 
 folder = "ADB_software/ttc/"
 
@@ -128,15 +115,9 @@ functions.function_ADB()
 
 folder = "ADB_software/libs/"
 
-f = path + "TMP100/TMP100.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_path("TMP100/TMP100.c")
+functions.function_path("INA226/INA226.c")
 
-f = path + "INA226/INA226.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
 print "Input to ccs directories"
 print pq9_path + "delfiPQ/ADB"
@@ -163,15 +144,9 @@ print "Creating symlinks"
 
 folder = "EPS_software/"
 
-f = pq9_path + "delfiPQ/EPS/HAL/EPS_Board.h"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_pq9("delfiPQ/EPS/HAL/EPS_Board.h")
+functions.function_pq9("delfiPQ/EPS/HAL/EPS_Board.c")
 
-f = pq9_path + "delfiPQ/EPS/HAL/EPS_Board.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
 folder = "EPS_software/ttc/"
 
@@ -188,25 +163,12 @@ software_EPS = ["delfiPQ/HAL/hal_functions.c",
 functions.function_EPS()
 
 folder = "EPS_software/libs/"
-f = path + "TMP100/TMP100.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
-f = path + "INA226/INA226.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_path("TMP100/TMP100.c")
+functions.function_path("INA226/INA226.c")
+functions.function_path("LTC2942/LTC2942.c")
+functions.function_path("MB85RS256A/MB85RS256A.c")
 
-f = path + "LTC2942/LTC2942.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
-
-f = path + "MB85RS256A/MB85RS256A.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
 print "Input to ccs directories"
 print pq9_path + "delfiPQ/EPS"
@@ -235,15 +197,9 @@ print "Creating symlinks"
 
 folder = "OBC_software/"
 
-f = pq9_path + "delfiPQ/OBC/HAL/OBC_Board.h"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_pq9("delfiPQ/OBC/HAL/OBC_Board.h")
+functions.function_pq9("delfiPQ/OBC/HAL/OBC_Board.c")
 
-f = pq9_path + "delfiPQ/OBC/HAL/OBC_Board.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
 folder = "OBC_software/ttc/"
 
@@ -262,20 +218,11 @@ software_core.insert(0, "core/en_data_service.c")
 functions.function_OBC()
 
 folder = "OBC_software/libs/"
-f = path + "TMP100/TMP100.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
-f = path + "INA226/INA226.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_path("TMP100/TMP100.c")
+functions.function_path("INA226/INA226.c")
+functions.function_path("MB85RS256A/MB85RS256A.c")
 
-f = path + "MB85RS256A/MB85RS256A.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
 print "Input to ccs directories"
 print pq9_path + "delfiPQ/OBC"
@@ -303,15 +250,9 @@ print "Creating symlinks"
 
 folder = "ADCS_software/"
 
-f = pq9_path + "delfiPQ/ADCS/HAL/ADCS_Board.h"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_pq9("delfiPQ/ADCS/HAL/ADCS_Board.h")
+functions.function_pq9("delfiPQ/ADCS/HAL/ADCS_Board.c")
 
-f = pq9_path + "delfiPQ/ADCS/HAL/ADCS_Board.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
 folder = "ADCS_software/ttc/"
 
@@ -329,20 +270,11 @@ software_core.remove("core/en_data_service.c")
 functions.function_ADCS()
 
 folder = "ADCS_software/libs/"
-f = path + "TMP100/TMP100.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
-f = path + "INA226/INA226.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_path("TMP100/TMP100.c")
+functions.function_path("INA226/INA226.c")
+functions.function_path("MB85RS256A/MB85RS256A.c")
 
-f = path + "MB85RS256A/MB85RS256A.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
 print "Input to ccs directories"
 print pq9_path + "delfiPQ/ADCS"
@@ -370,15 +302,9 @@ print "Creating symlinks"
 
 folder = "COMMS_software/"
 
-f = pq9_path + "delfiPQ/COMMS/HAL/COMMS_Board.h"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+functions.function_pq9("delfiPQ/COMMS/HAL/COMMS_Board.h")
+functions.function_pq9("delfiPQ/COMMS/HAL/COMMS_Board.c")
 
-f = pq9_path + "delfiPQ/COMMS/HAL/COMMS_Board.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
 
 folder = "COMMS_software/ttc/"
 
@@ -397,10 +323,9 @@ software_core.insert(0, "core/en_data_service.c")
 functions.function_COMMS()
 
 folder = "COMMS_software/libs/"
-f = path + "TMP100/TMP100.c"
-cmd = "ln -s " + f + " " + folder
-pipe = subprocess.Popen(cmd, shell=True)
-pipe.wait()
+
+functions.function_path("TMP100/TMP100.c")
+
 
 print "Input to ccs directories"
 print pq9_path + "delfiPQ/COMMS"
