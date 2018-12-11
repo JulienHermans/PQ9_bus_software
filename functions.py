@@ -1,4 +1,8 @@
-def function_clone():
+import subprocess
+from subprocess import call
+
+
+def function_clone(software):
 	def clone(cmd):
 		pipe = subprocess.Popen(cmd, shell=True)
 		pipe.wait()
