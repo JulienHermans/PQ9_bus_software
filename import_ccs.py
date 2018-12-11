@@ -25,7 +25,7 @@ software = ["git clone https://github.com/nchronas/ADB_software.git",
 	"git clone https://github.com/nchronas/MB85RS256A.git",
 	"git clone https://github.com/nchronas/LTC2942.git"]
 
-functions.function_clone()
+functions.function_clone(software)
 
 print "Making RED project"
 
